@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIP-05 Nostr Verification Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 data-en="NIP-05 Nostr Verification Tool" data-fr="Outil de Vérification NIP-05 Nostr">NIP-05 Nostr Verification Tool</h1>
+            <div class="language-switcher">
+                <button id="lang-en" class="lang-btn active">EN</button>
+                <button id="lang-fr" class="lang-btn">FR</button>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <div class="input-group">
+                <label for="username" data-en="Username" data-fr="Nom d'utilisateur">Username</label>
+                <input type="text" id="username" placeholder="alice" data-placeholder-en="alice" data-placeholder-fr="alice">
+                <small data-en="Your username without the domain" data-fr="Votre nom d'utilisateur sans le domaine">Your username without the domain</small>
+            </div>
+            
+            <div class="input-group">
+                <label for="domain" data-en="Domain" data-fr="Domaine">Domain</label>
+                <input type="text" id="domain" placeholder="example.com" data-placeholder-en="example.com" data-placeholder-fr="exemple.com">
+                <small data-en="The domain of your NIP-05 identity" data-fr="Le domaine de votre identité NIP-05">The domain of your NIP-05 identity</small>
+            </div>
+            
+            <div class="input-group">
+                <label for="npub" data-en="Npub (Public Key)" data-fr="Npub (Clé Publique)">Npub (Public Key)</label>
+                <input type="text" id="npub" placeholder="npub1..." data-placeholder-en="npub1..." data-placeholder-fr="npub1...">
+                <small data-en="Your Nostr public key in npub format" data-fr="Votre clé publique Nostr au format npub">Your Nostr public key in npub format</small>
+            </div>
+            
+            <button id="verify-btn" data-en="Verify NIP-05" data-fr="Vérifier NIP-05">Verify NIP-05</button>
+        </div>
+        
+        <div id="result" class="result hidden"></div>
+        
+        <div class="info-section">
+            <h2 data-en="What is NIP-05?" data-fr="Qu'est-ce que NIP-05 ?">What is NIP-05?</h2>
+            <p data-en="NIP-05 is a Nostr standard that allows verifying a user's identity by associating an email-like address to a Nostr public key. This facilitates account discovery and verification." data-fr="NIP-05 est un standard Nostr qui permet de vérifier l'identité d'un utilisateur en associant une adresse de type email à une clé publique Nostr. Cela facilite la découverte et la vérification des comptes.">NIP-05 is a Nostr standard that allows verifying a user's identity by associating an email-like address to a Nostr public key. This facilitates account discovery and verification.</p>
+            
+            <div class="example-box">
+                <h3 data-en="Example" data-fr="Exemple">Example</h3>
+                <p data-en="If your NIP-05 identity is alice@example.com, your domain should serve a JSON file at:" data-fr="Si votre identité NIP-05 est alice@example.com, votre domaine doit servir un fichier JSON à :">If your NIP-05 identity is alice@example.com, your domain should serve a JSON file at:</p>
+                <code>https://example.com/.well-known/nostr.json</code>
+                <p data-en="With content like:" data-fr="Avec un contenu comme :">With content like:</p>
+                <pre>{
+  "names": {
+    "alice": "b12b632c887f0c871d140d37bcb6e7c1e1a80264d0b7de8255aa1951d9e1ff79"
+  }
+}</pre>
+                <p class="note" data-en="Note: Use hexadecimal format (64 characters), not npub format in the JSON file." data-fr="Note : Utilisez le format hexadécimal (64 caractères), pas le format npub dans le fichier JSON.">Note: Use hexadecimal format (64 characters), not npub format in the JSON file.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
