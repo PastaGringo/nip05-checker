@@ -1,0 +1,35 @@
+# Fichiers Git
+.git
+.gitignore
+
+# Fichiers de documentation (sauf README.md qui est inclus)
+*.md
+!README.md
+
+# Fichiers de développement
+.vscode/
+.idea/
+*.log
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers temporaires
+*.tmp
+*.temp
+
+# Fichiers Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+
+# Fichiers de cache
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

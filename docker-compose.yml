@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  nip05-checker:
+    build: .
+    container_name: nip05-checker
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nip05-checker.rule=Host(`nip05.localhost`)"
+      - "traefik.http.services.nip05-checker.loadbalancer.server.port=80"
+    networks:
+      - nip05-network
+
+networks:
+  nip05-network:
+    driver: bridge
+
+# Configuration optionnelle pour un reverse proxy Traefik
+# Décommentez si vous utilisez Traefik
+#  traefik:
+#    image: traefik:v2.10
+#    container_name: traefik
+#    command:
+#      - "--api.insecure=true"
+#      - "--providers.docker=true"
+#      - "--providers.docker.exposedbydefault=false"
+#      - "--entrypoints.web.address=:80"
+#    ports:
+#      - "80:80"
+#      - "8080:8080"
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+#    networks:
+#      - nip05-network
